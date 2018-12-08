@@ -15,11 +15,11 @@ class RatingViewTest(TestCase):
     def test_rating_view_should_show_three_rating(self):
         response = self.client.get(self.url)
 
-        positive = '<a href="ratings/positive/">'\
+        positive = '<a href="positive/">'\
             '<img src="/static/images/positive.png" alt="Positive"></a>'
-        neutral = '<a href="ratings/neutral/">'\
+        neutral = '<a href="neutral/">'\
             '<img src="/static/images/neutral.png" alt="Neutral"></a>'
-        negative = '<a href="ratings/negative/">'\
+        negative = '<a href="negative/">'\
             '<img src="/static/images/negative.png" alt="Negative"></a>'
         self.assertContains(response, positive, status_code=200)
         self.assertContains(response, neutral, status_code=200)
