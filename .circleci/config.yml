@@ -64,9 +64,7 @@ jobs:
             docker build -t popsoften/simplezat:stable -f Dockerfile.dev .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push popsoften/simplezat:stable
-      - add_ssh_keys:
-          fingerprints:
-            - "b7:35:a6:4e:9b:0d:6d:d4:78:1e:9a:97:2a:66:6b:be"
+      - add_ssh_keys
       - run:
           name: Deploy to Dev
           command: |
@@ -89,9 +87,7 @@ jobs:
             docker build -t popsoften/simplezat:live -f Dockerfile.production .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push popsoften/simplezat:live
-      - add_ssh_keys:
-          fingerprints:
-            - "b7:35:a6:4e:9b:0d:6d:d4:78:1e:9a:97:2a:66:6b:be"
+      - add_ssh_keys
       - run:
           name: Deploy to Production
           command: |
