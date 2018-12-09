@@ -1,6 +1,7 @@
 ---
 - name: prod
   hosts: prod
+  become: True
   roles:
     - deploy
   vars:
