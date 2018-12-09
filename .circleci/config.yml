@@ -63,7 +63,7 @@ jobs:
           command: |
             docker build -t pop/simplezat:stable -f Dockerfile.dev .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker push pop/simplezat:stable
+            docker push popsoften/simplezat:stable
       - add_ssh_keys:
           fingerprints:
             - "80:4a:fa:bb:d3:16:45:3d:dd:37:98:98:62:3d:6b:0c"
