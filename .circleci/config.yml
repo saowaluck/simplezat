@@ -7,9 +7,11 @@ jobs:
       - image: circleci/python:3.7.1
     steps:
       - checkout
-      - persist_to_workspcace:
-          root: .
-          paths: .
+      - run:
+        name: Install dependencies
+        command: |
+          pwd
+          ls
 
   python_dependencies:
     working_directory: ~/simplezat
