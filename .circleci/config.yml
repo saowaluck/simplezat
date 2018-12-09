@@ -71,6 +71,7 @@ jobs:
           name: Deploy to Dev
           command: |
             cd deployment
+            ssh-keyscan -H 35.237.130.8 >> ~/.ssh/known_hosts
             pipenv install
             pipenv run ansible-playbook -i hosts playbooks/dev.yml --extra-vars "project_root=~/simplezat/"
 
