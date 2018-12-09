@@ -66,7 +66,7 @@ jobs:
             docker push popsoften/simplezat:stable
       - add_ssh_keys:
           fingerprints:
-            - "c5:82:08:8d:9f:56:a7:26:68:1b:70:4d:07:82:3b:6f"
+            - "b7:35:a6:4e:9b:0d:6d:d4:78:1e:9a:97:2a:66:6b:be"
       - run:
           name: Deploy to Dev
           command: |
