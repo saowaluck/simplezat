@@ -61,7 +61,7 @@ jobs:
       - run:
           name: Buid Stabel Images
           command: |
-            docker build -t pop/simplezat:stable -f Dockerfile.dev .
+            docker build -t popsoften/simplezat:stable -f Dockerfile.dev .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push popsoften/simplezat:stable
       - add_ssh_keys:
