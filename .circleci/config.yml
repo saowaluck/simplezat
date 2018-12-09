@@ -117,7 +117,7 @@ workflows:
       - deploy_dev:
           requires:
             - unit_tests
-     - wait_for_approval:
+      - wait_for_approval:
           type: approval
           requires:
             - deploy_dev
