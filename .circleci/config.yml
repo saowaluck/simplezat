@@ -30,7 +30,7 @@ jobs:
       - image: circleci/python:3.7.1
     steps:
       - attach_workspace:
-        at: .
+          at: .
       - run:
           name: Run static analysis
           command: |
@@ -41,6 +41,8 @@ jobs:
     docker:
       - image: circleci/python:3.7.1
     steps:
+      - attach_workspace:
+          at: .
       - run:
           name: Run unittest
           command: |
@@ -52,6 +54,8 @@ jobs:
     docker:
       - image: circleci/python:3.7.1
     steps:
+      - attach_workspace:
+        at: .
       - run:
           name: Deploy to Dev
           command: |
