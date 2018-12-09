@@ -34,6 +34,7 @@ jobs:
       - run:
           name: Run static analysis
           command: |
+            pipenv install --dev
             pipenv run flake8
 
   unit_tests:
@@ -46,8 +47,8 @@ jobs:
       - run:
           name: Run unittest
           command: |
-            cd simplezat
-            pipenv run python manage.py test
+            pipenv install --dev
+            cd simplezat && pipenv run python manage.py test
 
   deploy_dev:
     working_directory: ~/simplezat
@@ -59,7 +60,7 @@ jobs:
       - run:
           name: Deploy to Dev
           command: |
-            cd deplyment
+            cd deployment
             pipenv install
             pipenv run ansible-playbook -i hosts playbooks/dev.yml --extra-vars "project_root=~/simplezat/"
 
