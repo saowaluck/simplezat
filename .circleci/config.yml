@@ -59,7 +59,7 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: Buid Stabel Images
+          name: Buid Stable Images
           command: |
             docker build -t popsoften/simplezat:stable -f Dockerfile.dev .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -74,6 +74,31 @@ jobs:
             ssh-keyscan -H 35.237.130.8 >> ~/.ssh/known_hosts
             pipenv install
             pipenv run ansible-playbook -i hosts playbooks/dev.yml --extra-vars "project_root=~/simplezat/"
+
+  deploy_prod:
+    working_directory: ~/simplezat
+    docker:
+      - image: circleci/python:3.7.1
+    steps:
+      - setup_remote_docker
+      - attach_workspace:
+          at: .
+      - run:
+          name: Buid Live Images
+          command: |
+            docker build -t popsoften/simplezat:live -f Dockerfile.production .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push popsoften/simplezat:live
+      - add_ssh_keys:
+          fingerprints:
+            - "b7:35:a6:4e:9b:0d:6d:d4:78:1e:9a:97:2a:66:6b:be"
+      - run:
+          name: Deploy to Production
+          command: |
+            cd deployment
+            ssh-keyscan -H 104.196.96.7 >> ~/.ssh/known_hosts
+            pipenv install
+            pipenv run ansible-playbook -i hosts playbooks/prod.yml --extra-vars "project_root=~/simplezat/"
 
 workflows:
   version: 2
@@ -92,6 +117,16 @@ workflows:
       - deploy_dev:
           requires:
             - unit_tests
+     - wait_for_approval:
+          type: approval
+          requires:
+            - deploy_dev
+      - deploy_production:
+          requires:
+            - wait_for_approval
+
+
+
 
 
 
