@@ -2,5 +2,5 @@
 35.237.130.8 ansible_connection=ssh ansible_ssh_user=pop
 
 [prod]
-104.196.96.7 ansible_connection=ssh ansible_ssh_user=pop
+104.196.96.7 ansible_connection=ssh ansible_ssh_user=ubuntu
 
